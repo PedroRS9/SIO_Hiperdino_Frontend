@@ -1,0 +1,16 @@
+<div>
+    <label>
+      Punto A: 
+      <input type="text" placeholder="Lat,Lng" #startInput />
+    </label>
+    <label>
+      Punto B: 
+      <input type="text" placeholder="Lat,Lng" #endInput />
+    </label>
+    <button (click)="updateRoute(parseCoordinates(startInput.value), parseCoordinates(endInput.value))">
+      Actualizar Ruta
+    </button>
+  </div>
+  
+  <div id="map" style="height: 500px; width: 100%;"></div>
+  

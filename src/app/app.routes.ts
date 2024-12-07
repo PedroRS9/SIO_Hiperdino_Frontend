@@ -5,6 +5,7 @@ import { View2Component } from './shared/components/dashboard/view2/view2.compon
 import { View3Component } from './shared/components/dashboard/view3/view3.component';
 import { LoginComponent } from './shared/components/login/login.component';
 import { authGuard, authChildGuard } from './core/guards/auth/auth.guard';
+import { MapsComponent } from './shared/components/maps/maps.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent }, // Página de login
@@ -18,6 +19,7 @@ export const routes: Routes = [
       { path: 'view1', component: View1Component },
       { path: 'view2', component: View2Component },
       { path: 'view3', component: View3Component },
+      { path: 'maps', component: MapsComponent },
     ],
   },
   { path: '', redirectTo: '/login', pathMatch: 'full' }, // Redirección por defecto
