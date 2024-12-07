@@ -1,24 +1,55 @@
 <div class="dashboard-container">
     <!-- header -->
     <header class="header">
-      <h1>Dashboard</h1>
-      <div class="header-actions">
-        <button>Settings</button>
-        <button>Logout</button>
-      </div>
+        <h1>Dashboard</h1>
+        <div class="header-actions">
+            <button>Settings</button>
+            <button>Logout</button>
+        </div>
     </header>
-    
+
     <!-- main content -->
     <div class="main-content">
-      <nav class="sidebar">
-        <ul>
-          <li><a routerLink="view1" routerLinkActive="active">View 1</a></li>
-          <li><a routerLink="view2" routerLinkActive="active">View 2</a></li>
-        </ul>
-      </nav>
-      <main class="content">
-        <router-outlet></router-outlet>
-      </main>
+        <nav class="sidebar">
+            <ul>
+                <li>
+                    <a routerLink="view1" routerLinkActive="active" class="icon-link">
+                        <div class="icon-with-text">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width="24" height="24">
+                            <path
+                                d="M575.8 255.5c0 18-15 32.1-32 32.1l-32 0 .7 160.2c0 2.7-.2 5.4-.5 8.1l0 16.2c0 22.1-17.9 40-40 40l-16 0c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1L416 512l-24 0c-22.1 0-40-17.9-40-40l0-24 0-64c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32 14.3-32 32l0 64 0 24c0 22.1-17.9 40-40 40l-24 0-31.9 0c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2l-16 0c-22.1 0-40-17.9-40-40l0-112c0-.9 0-1.9 .1-2.8l0-69.7-32 0c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z">
+                            </path>
+                        </svg>
+                        <span>HOME</span>
+                    </div>
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="view2" routerLinkActive="active" class="icon-link">
+                        <div class="icon-with-text">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
+                            <path
+                                d="M58.9 42.1c3-6.1 9.6-9.6 16.3-8.7L320 64 564.8 33.4c6.7-.8 13.3 2.7 16.3 8.7l41.7 83.4c9 17.9-.6 39.6-19.8 45.1L439.6 217.3c-13.9 4-28.8-1.9-36.2-14.3L320 64 236.6 203c-7.4 12.4-22.3 18.3-36.2 14.3L37.1 170.6c-19.3-5.5-28.8-27.2-19.8-45.1L58.9 42.1zM321.1 128l54.9 91.4c14.9 24.8 44.6 36.6 72.5 28.6L576 211.6l0 167c0 22-15 41.2-36.4 46.6l-204.1 51c-10.2 2.6-20.9 2.6-31 0l-204.1-51C79 419.7 64 400.5 64 378.5l0-167L191.6 248c27.8 8 57.6-3.8 72.5-28.6L318.9 128l2.2 0z" />
+                        </svg>
+                        <span>INVENTORY</span>
+                    </div>
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="view3" routerLinkActive="active" class="icon-link">
+                        <div class="icon-with-text">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                <path
+                                    d="M0 32C0 14.3 14.3 0 32 0l72.9 0c27.5 0 52 17.6 60.7 43.8L257.7 320c30.1 .5 56.8 14.9 74 37l202.1-67.4c16.8-5.6 34.9 3.5 40.5 20.2s-3.5 34.9-20.2 40.5L352 417.7c-.9 52.2-43.5 94.3-96 94.3c-53 0-96-43-96-96c0-30.8 14.5-58.2 37-75.8L104.9 64 32 64C14.3 64 0 49.7 0 32zM244.8 134.5c-5.5-16.8 3.7-34.9 20.5-40.3L311 79.4l19.8 60.9 60.9-19.8L371.8 59.6l45.7-14.8c16.8-5.5 34.9 3.7 40.3 20.5l49.4 152.2c5.5 16.8-3.7 34.9-20.5 40.3L334.5 307.2c-16.8 5.5-34.9-3.7-40.3-20.5L244.8 134.5z" />
+                            </svg>
+                        <span>ORDERS</span>
+                    </div>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <main class="content">
+            <router-outlet></router-outlet>
+        </main>
     </div>
-  </div>
-  
+</div>
