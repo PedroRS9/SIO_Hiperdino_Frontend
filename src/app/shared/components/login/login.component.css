@@ -57,10 +57,6 @@
   line-height: 1;
 }
 
-.welcome-line-1 {
-  background-image: url("./logo.png");
-}
-
 #welcome-line-2 {
   color: #01633a;
   font-size: 18px;
