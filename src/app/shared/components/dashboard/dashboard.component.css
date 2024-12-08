@@ -15,6 +15,7 @@
     color: white;
     padding: 15px 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0; /* No permite que el header se reduzca */
 }
 
 .header h1 {
@@ -39,7 +40,8 @@
 /* Contenido principal */
 .main-content {
     display: flex;
-    flex: 1;
+    flex: 1; /* Ocupa el espacio restante */
+    overflow: hidden; /* Evita el desbordamiento en la dirección principal */
 }
 
 /* Barra lateral */
@@ -48,8 +50,8 @@
     background-color: #333333;
     color: white;
     padding-left: 20px;
+    overflow-y: auto; /* Agrega scroll interno si el contenido supera la altura */
 }
-
 .sidebar ul {
     list-style: none;
     padding: 0;
@@ -66,10 +68,13 @@
 
 /* Contenido principal */
 .content {
-    flex: 10px;
+    flex: 1; /* Ocupa todo el espacio restante */
     padding: 10px;
     background-color: #f4f4f4;
     border-top-left-radius: 10px;
+    overflow-y: auto; /* Permite scroll interno si el contenido es muy alto */
+    max-height: 100%; /* Restringe la altura al contenedor */
+    box-sizing: border-box; /* Incluye el padding en el cálculo de la altura */
 }
 
 

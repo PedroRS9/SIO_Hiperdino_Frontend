@@ -1,2 +1,61 @@
-<h2>View 2</h2>
-<p>Welcome to View 2!</p>
+<div>
+    <h1>Inventarios</h1>
+  
+    <!-- Botones de tiendas -->
+    <div style="margin-bottom: 20px;">
+      <button 
+        *ngFor="let store of uniqueStores" 
+        (click)="filterByStore(store)"
+        style="margin-right: 10px; padding: 5px 10px; border: none; border-radius: 4px; background-color: #ecf0f1; cursor: pointer;"
+      >
+        {{ store }}
+      </button>
+      <button 
+        (click)="clearFilter()"
+        style="padding: 5px 10px; border: none; border-radius: 4px; background-color: #bdc3c7; cursor: pointer;"
+      >
+        Mostrar todos
+      </button>
+    </div>
+  
+    <!-- Campo de búsqueda -->
+    <div>
+      <input 
+        type="text" 
+        placeholder="Filtrar..." 
+        [(ngModel)]="filterText" 
+        (input)="applyFilter()" 
+        style="margin-bottom: 10px; padding: 5px; width: 300px;"
+      />
+    </div>
+  
+    <!-- Tabla de inventarios -->
+    <table border="1" style="width: 100%; border-collapse: collapse; text-align: left;">
+      <thead>
+        <tr>
+          <th (click)="sort('id')">ID</th>
+          <th (click)="sort('product')">Producto</th>
+          <th (click)="sort('price')">Precio (€)</th>
+          <th>Stock Mín.</th>
+          <th>Stock Máx.</th>
+          <th (click)="sort('quantity')">Cantidad</th>
+          <th (click)="sort('store')">Tienda</th>
+          <th>Ubicación</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let inventory of filteredInventories">
+          <td>{{ inventory.id }}</td>
+          <td>{{ inventory.product.name }}</td>
+          <td>{{ inventory.product.price | number:'1.2-2' }}</td>
+          <td>{{ inventory.product.minStock }}</td>
+          <td>{{ inventory.product.maxStock }}</td>
+          <td>{{ inventory.quantity }}</td>
+          <td>{{ inventory.store.name }}</td>
+          <td>{{ inventory.store.location }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <p *ngIf="filteredInventories.length === 0">No se encontraron resultados.</p>
+  </div>
+  
