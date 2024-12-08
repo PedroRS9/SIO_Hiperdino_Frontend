@@ -12,25 +12,13 @@
     </tr>
     </thead>
     <tbody>
-    <tr>
-      <td>
-
-      </td>
-      <td>
-
-      </td>
-      <td>
-
-      </td>
-      <td>
-
-      </td>
-      <td>
-
-      </td>
-      <td>
-
-      </td>
+    <tr *ngFor="let order of filteredOrders">
+      <td>{{ order.id}}</td>
+      <td>{{ order.warehouseName }}</td>
+      <td>{{ order.storeName }}</td>
+      <td>{{ order.productName }}</td>
+      <td>{{ order.quantity }}</td>
+      <td>{{ order.delivered }}</td>
     </tr>
     </tbody>
   </table>
