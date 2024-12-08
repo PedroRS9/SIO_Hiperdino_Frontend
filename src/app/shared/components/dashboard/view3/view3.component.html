@@ -9,16 +9,21 @@
       <th (click)="sort('productName')">Nombre Producto</th>
       <th (click)="sort('quantity')">Cantidad</th>
       <th (click)="sort('delivered')">Entregado</th>
+      <th></th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let order of filteredOrders">
       <td>{{ order.id}}</td>
-      <td>{{ order.warehouseName }}</td>
-      <td>{{ order.storeName }}</td>
+      <td>{{ order.warehouse.name }}</td>
+      <td>{{ order.store.name }}</td>
       <td>{{ order.productName }}</td>
       <td>{{ order.quantity }}</td>
       <td>{{ order.delivered }}</td>
+      <td>
+        <button (click)="viewRoute(order)">Ver ruta</button>
+        <button (click)="deliverOrder(order)">Entregar</button>
+      </td>
     </tr>
     </tbody>
   </table>

@@ -1,16 +1,15 @@
 <div>
     <label>
-      Punto A: 
-      <input type="text" placeholder="Lat,Lng" #startInput />
+      Origen:
+      <input [(ngModel)]="origin" placeholder="Introduce origen" />
     </label>
     <label>
-      Punto B: 
-      <input type="text" placeholder="Lat,Lng" #endInput />
+      Destino:
+      <input [(ngModel)]="destination" placeholder="Introduce destino" />
     </label>
-    <button (click)="updateRoute(parseCoordinates(startInput.value), parseCoordinates(endInput.value))">
-      Actualizar Ruta
+    <button (click)="setRoute()">
+      Actualizar ruta
     </button>
   </div>
-  
+
   <div id="map" style="height: 500px; width: 100%;"></div>
-  

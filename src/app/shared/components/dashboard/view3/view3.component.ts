@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {NgForOf} from '@angular/common';
+import {DataService} from '../../../../core/services/dataservice/data-service.service';
+import {Router} from '@angular/router';
+import {AuthService} from '../../../../core/services/authservice/authservice.service';
 
 @Component({
   selector: 'app-view3',
@@ -14,14 +17,16 @@ export class View3Component implements OnInit{
   public sortColumn: string = ''; // Columna por la que se ordena
   public sortDirection: 'asc' | 'desc' = 'asc'; // Dirección de la ordenación
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private dataService: DataService, private router: Router) {}
+
+  private ordersUrl = 'http://localhost:8080/orders';
 
   ngOnInit() {
-    const url: string = 'http://localhost:8080/orders'; // Cambia la URL si es necesario
+    const url: string = this.ordersUrl;
     this.http.get<any[]>(url).subscribe(
       (response) => {
         this.filteredOrders = response; // Inicialmente, no hay filtros
-        console.log(this.filteredOrders);
+        this.filteredOrders.sort((a, b) => a.id - b.id);
       },
       (error) => {
         console.error('Error al cargar los datos:', error);
@@ -53,11 +58,28 @@ export class View3Component implements OnInit{
   private getColumnValue(order: any, column: string): any {
     switch (column) {
       case 'id': return order.id;
-      case 'warehouseName': return order.warehouseName;
-      case 'storeName': return order.storeName;
+      case 'warehouseName': return order.warehouse.name;
+      case 'storeName': return order.store.name;
       case 'productName': return order.productName;
       case 'quantity': return order.quantity;
       default: return '';
     }
+  }
+
+  viewRoute(order: any) {
+    this.dataService.sendData({ value1: order.warehouse.location, value2: order.store.location });
+    this.router.navigate(['/dashboard/maps']).then(r => console.log('Navegación a /dashboard/maps:', r));
+  }
+
+  deliverOrder(order: any) {
+    this.http.put(`${this.ordersUrl}/${order.id}/delivered`, {}, { responseType: 'text' }).subscribe(
+      (response) => {
+        console.log('Orden entregada:', response);
+        this.ngOnInit();
+      },
+      (error) => {
+        console.error('Error al entregar la orden:', error);
+      }
+    );
   }
 }
