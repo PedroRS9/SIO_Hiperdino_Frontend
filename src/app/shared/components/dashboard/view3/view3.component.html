@@ -3,12 +3,12 @@
   <table border="1">
     <thead>
     <tr>
-      <th>ID</th>
-      <th>Nombre Almacén</th>
-      <th>Nombre Tienda</th>
-      <th>Nombre Producto</th>
-      <th>Cantidad</th>
-      <th>Entregado</th>
+      <th (click)="sort('id')">ID</th>
+      <th (click)="sort('warehouseName')">Nombre Almacén</th>
+      <th (click)="sort('storeName')">Nombre Tienda</th>
+      <th (click)="sort('productName')">Nombre Producto</th>
+      <th (click)="sort('quantity')">Cantidad</th>
+      <th (click)="sort('delivered')">Entregado</th>
     </tr>
     </thead>
     <tbody>
