@@ -1,2 +1,43 @@
-<h2>View 1</h2>
-<p>Welcome to View 1!</p>
+<div class="container mt-4">
+  <h1>Panel de Control</h1>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card text-white bg-primary mb-3">
+        <div class="card-header">Órdenes Procesadas</div>
+        <div class="card-body">
+          <h5 class="card-title" id="ordersProcessed">120</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card text-white bg-success mb-3">
+        <div class="card-header">Tiempos de Entrega</div>
+        <div class="card-body">
+          <h5 class="card-title" id="deliveryTimes">45 min</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card text-white bg-warning mb-3">
+        <div class="card-header">Nivel de Stock</div>
+        <div class="card-body">
+          <h5 class="card-title" id="stockLevel">Bajo</h5>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <h1>Órdenes Procesadas</h1>
+      <div class="col-md-6">
+        <canvas id="myChart"></canvas>
+      </div>
+    </div>
+    <div class="container mt-4">
+      <h1>Almacenamiento</h1>
+      <div class="row">
+        <div class="col-md-6">
+          <canvas id="storageChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
