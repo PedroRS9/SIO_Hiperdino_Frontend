@@ -9,22 +9,38 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
   styleUrls: ['./view1.component.css'],
   imports: [HttpClientModule]
 })
-export class View1Component implements OnInit{
-  public inventories: any[] = []; // Datos originales
+export class View1Component implements OnInit {
+  public inventories: any[] = [];
+  
+  // Propiedades para mostrar métricas en el dashboard
+  public totalMaxStock: number = 0;
+  public totalOccupied: number = 0;
+  public totalCapacity: number = 0;
+  public percentageOccupied: number = 0;
+  public percentageFree: number = 0;
 
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    const url: string = 'http://localhost:8080/inventories'; // Cambia la URL si es necesario
+    const url: string = 'http://localhost:8080/inventories';
     this.http.get<any[]>(url).subscribe(
       (response) => {
-        this.inventories = response;
+        this.inventories = response ?? []; 
+        this.calcularMétricas();
         this.createChart();
       },
       (error) => {
         console.error('Error al cargar los datos:', error);
       }
     );
+  }
+
+  calcularMétricas(): void {
+    this.totalMaxStock = this.inventories.reduce((sum, item) => sum + item.product.maxStock, 0);
+    this.totalOccupied = this.inventories.reduce((sum, val) => sum + val.quantity, 0);
+    this.totalCapacity = this.inventories.reduce((sum, val) => sum + val.product.maxStock, 0);
+    this.percentageOccupied = (this.totalOccupied / this.totalCapacity) * 100;
+    this.percentageFree = 100 - this.percentageOccupied;
   }
 
   sumMaxStock(): void {
@@ -37,11 +53,6 @@ export class View1Component implements OnInit{
 
   createChart(): void {
     Chart.register(...registerables);
-
-    const totalOccupied = this.inventories.reduce((sum, val) => sum + val.quantity, 0);
-    const totalCapacity = this.inventories.reduce((sum, val) => sum + val.product.maxStock, 0);
-    const percentageOccupied = (totalOccupied / totalCapacity) * 100;
-    const percentageFree = 100 - percentageOccupied;
 
     const ctx = document.getElementById('myChart') as HTMLCanvasElement;
     new Chart(ctx, {
@@ -72,20 +83,18 @@ export class View1Component implements OnInit{
       },
       options: {
         scales: {
-          y: {
-            beginAtZero: true
-          }
+          y: { beginAtZero: true }
         }
       }
     });
+
     const ctx2 = document.getElementById('storageChart') as HTMLCanvasElement;
     new Chart(ctx2, {
       type: 'pie',
       data: {
         labels: ['Ocupado', 'Libre'],
         datasets: [{
-          data: [percentageOccupied,
-            percentageFree],
+          data: [this.percentageOccupied, this.percentageFree],
           backgroundColor: [
             'rgba(255, 99, 132, 0.2)',
             'rgba(54, 162, 235, 0.2)'
@@ -100,9 +109,7 @@ export class View1Component implements OnInit{
       options: {
         responsive: true,
         plugins: {
-          legend: {
-            position: 'top',
-          },
+          legend: { position: 'top' },
           title: {
             display: true,
             text: 'Porcentaje de Almacenamiento Ocupado'
